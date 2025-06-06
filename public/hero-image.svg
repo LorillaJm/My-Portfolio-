@@ -1,0 +1,41 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Elements -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a237e;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#0d47a1;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Abstract Shapes -->
+  <circle cx="300" cy="200" r="150" fill="url(#grad1)" />
+  <circle cx="400" cy="150" r="100" fill="url(#grad1)" opacity="0.7" />
+  <circle cx="200" cy="250" r="120" fill="url(#grad1)" opacity="0.5" />
+  
+  <!-- Books Stack -->
+  <g transform="translate(250,150)">
+    <!-- Book 1 -->
+    <rect x="0" y="0" width="120" height="30" rx="5" fill="#1a237e" />
+    <!-- Book 2 -->
+    <rect x="10" y="30" width="120" height="30" rx="5" fill="#0d47a1" />
+    <!-- Book 3 -->
+    <rect x="-10" y="60" width="120" height="30" rx="5" fill="#283593" />
+    <!-- Book 4 -->
+    <rect x="5" y="90" width="120" height="30" rx="5" fill="#1565c0" />
+  </g>
+  
+  <!-- Floating Elements -->
+  <g transform="translate(150,100)">
+    <!-- Math Symbols -->
+    <text x="0" y="0" fill="#1a237e" font-size="24" font-family="Arial">∑</text>
+    <text x="50" y="50" fill="#0d47a1" font-size="24" font-family="Arial">π</text>
+    <text x="100" y="-20" fill="#283593" font-size="24" font-family="Arial">÷</text>
+    <!-- Science Symbols -->
+    <text x="150" y="30" fill="#1565c0" font-size="24" font-family="Arial">⚛</text>
+    <text x="200" y="0" fill="#1a237e" font-size="24" font-family="Arial">⚡</text>
+  </g>
+  
+  <!-- Decorative Lines -->
+  <path d="M50,350 Q300,300 550,350" stroke="#1a237e" fill="none" stroke-width="2" opacity="0.3" />
+  <path d="M50,370 Q300,320 550,370" stroke="#0d47a1" fill="none" stroke-width="2" opacity="0.2" />
+</svg> 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="16" fill="#2E7D32"/>
+  
+  <!-- Graduation cap -->
+  <path d="M16 6L4 12L16 18L26 13.1V20H28V12L16 6Z" fill="white"/>
+  <path d="M10 15.1V20.6C10 22.3 12.7 24 16 24C19.3 24 22 22.3 22 20.6V15.1L16 18L10 15.1Z" fill="white"/>
+</svg> 
