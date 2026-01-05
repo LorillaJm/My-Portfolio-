@@ -120,13 +120,12 @@ const Navigation = () => {
               <Typography
                 sx={{
                   fontWeight: 600,
-                  fontSize: '1.1rem',
+                  fontSize: { xs: '0.95rem', sm: '1.1rem' },
                   color: 'text.primary',
-                  display: { xs: 'none', sm: 'block' },
                   letterSpacing: '-0.02em',
                 }}
               >
-                John Michael
+                John Michael Lorilla
               </Typography>
             </Box>
 
