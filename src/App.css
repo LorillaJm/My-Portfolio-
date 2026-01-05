@@ -1,127 +1,96 @@
-.App {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+/* App-specific styles - Premium Portfolio */
+
+/* Smooth page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
 }
 
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  flex: 1;
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
 }
 
-/* Modern Header Styles */
-.header {
-  background-color: var(--background-light);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+.page-transition-exit {
+  opacity: 1;
 }
 
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
 }
 
-/* Modern Footer Styles */
-.footer {
-  background-color: var(--background-alt);
-  padding: 2rem 0;
-  margin-top: auto;
+/* Custom animations for premium feel */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+.gradient-animated {
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
 }
 
-/* Card Grid Layout */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  padding: 1.5rem 0;
+/* Glow effects */
+.glow-blue {
+  box-shadow: 0 0 40px rgba(79, 140, 255, 0.15);
 }
 
-/* Responsive Images */
+.glow-purple {
+  box-shadow: 0 0 40px rgba(124, 92, 255, 0.15);
+}
+
+/* Text selection */
+::selection {
+  background: rgba(79, 140, 255, 0.3);
+  color: #FAFAFA;
+}
+
+/* Smooth image loading */
 img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
-/* Animation Classes */
-.fade-in {
-  animation: fadeIn 0.5s ease-in;
+img[loading] {
+  opacity: 0;
 }
 
-.slide-up {
-  animation: slideUp 0.5s ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .header-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
-  }
-}
-
-/* Accessibility */
-:focus {
-  outline: 3px solid var(--primary-green);
+/* Focus ring for accessibility */
+*:focus-visible {
+  outline: 2px solid #4F8CFF;
   outline-offset: 2px;
 }
 
-/* Print Styles */
-@media print {
-  .header,
-  .footer {
-    display: none;
-  }
+/* Button press effect */
+button:active {
+  transform: scale(0.98);
+}
 
-  .container {
-    padding: 0;
-  }
+/* Link hover underline animation */
+.link-underline {
+  position: relative;
+}
 
-  body {
-    color: black;
-  }
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(135deg, #4F8CFF 0%, #7C5CFF 100%);
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
 }

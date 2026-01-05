@@ -58,3 +58,5 @@ database.rules.json
 /scripts/migrate-drive.ts
 /scripts/migrate-drive.js
 /scripts/migrate-drive.d.ts
+
+.vercel
