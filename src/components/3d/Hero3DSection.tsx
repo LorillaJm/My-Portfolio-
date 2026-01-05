@@ -66,18 +66,21 @@ export const Hero3DSection = () => {
         minHeight: { xs: 'auto', md: '100vh' },
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
         py: { xs: 4, sm: 6, md: 0 },
+        pb: { md: 12 },
       }}
     >
       <Container maxWidth="lg">
         <Grid 
           container 
-          spacing={{ xs: 4, sm: 5, md: 8 }} 
+          spacing={{ xs: 4, sm: 5, md: 6 }} 
           alignItems="center"
           justifyContent="space-between"
           direction={{ xs: 'column-reverse', md: 'row' }}
+          sx={{ mt: { md: -8 } }}
         >
           {/* Left - Text Content */}
           <Grid item xs={12} md={6} lg={6}>
@@ -249,7 +252,7 @@ export const Hero3DSection = () => {
               style={{ y: imageY, opacity: imageOpacity }}
               sx={{
                 display: 'flex',
-                justifyContent: 'center',
+                justifyContent: { xs: 'center', md: 'flex-end' },
                 alignItems: 'center',
               }}
             >
@@ -265,8 +268,8 @@ export const Hero3DSection = () => {
                 }}
                 sx={{
                   position: 'relative',
-                  width: { xs: 200, sm: 260, md: 350, lg: 400 },
-                  height: { xs: 200, sm: 260, md: 350, lg: 400 },
+                  width: { xs: 200, sm: 260, md: 380, lg: 420 },
+                  height: { xs: 200, sm: 260, md: 380, lg: 420 },
                 }}
               >
                 {/* Glow effect behind */}
