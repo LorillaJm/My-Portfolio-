@@ -2,7 +2,7 @@
  * Hero Section with Profile Image
  * Clean layout with text on left, image on right
  */
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Box, Container, Typography, Button, Stack, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { ArrowForward as ArrowForwardIcon } from '@mui/icons-material';
@@ -34,6 +34,137 @@ const scaleIn = {
       ease: [0.16, 1, 0.3, 1],
     },
   },
+};
+
+// Letter animation variants
+const letterVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      delay: i * 0.03,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  }),
+};
+
+// Typewriter animation component - infinite loop, no word breaks
+const TypewriterText = () => {
+  const { isDarkMode } = useTheme();
+  const [key, setKey] = useState(0);
+
+  // Restart animation every 6 seconds for infinite loop
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setKey(prev => prev + 1);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const sentence = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const wordAnim = {
+    hidden: { opacity: 0, y: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  };
+
+  return (
+    <motion.span
+      key={key}
+      variants={sentence}
+      initial="hidden"
+      animate="visible"
+      style={{ display: 'inline' }}
+    >
+      <motion.span variants={wordAnim} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+        I
+      </motion.span>{' '}
+      <motion.span variants={wordAnim} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+        build
+      </motion.span>{' '}
+      <motion.span 
+        variants={wordAnim} 
+        style={{ 
+          display: 'inline-block', 
+          whiteSpace: 'nowrap',
+          background: isDarkMode 
+            ? 'linear-gradient(135deg, #4F8CFF 0%, #7C5CFF 100%)'
+            : 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          filter: isDarkMode 
+            ? 'drop-shadow(0 0 8px rgba(79, 140, 255, 0.6)) drop-shadow(0 0 20px rgba(124, 92, 255, 0.4))'
+            : 'drop-shadow(0 0 8px rgba(37, 99, 235, 0.5)) drop-shadow(0 0 20px rgba(124, 58, 237, 0.3))',
+        }}
+      >
+        digital
+      </motion.span>{' '}
+      <motion.span 
+        variants={wordAnim} 
+        style={{ 
+          display: 'inline-block', 
+          whiteSpace: 'nowrap',
+          background: isDarkMode 
+            ? 'linear-gradient(135deg, #4F8CFF 0%, #7C5CFF 100%)'
+            : 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          filter: isDarkMode 
+            ? 'drop-shadow(0 0 8px rgba(79, 140, 255, 0.6)) drop-shadow(0 0 20px rgba(124, 92, 255, 0.4))'
+            : 'drop-shadow(0 0 8px rgba(37, 99, 235, 0.5)) drop-shadow(0 0 20px rgba(124, 58, 237, 0.3))',
+        }}
+      >
+        experiences
+      </motion.span>{' '}
+      <motion.span variants={wordAnim} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+        that
+      </motion.span>{' '}
+      <motion.span variants={wordAnim} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+        matter.
+      </motion.span>
+      
+      {/* Blinking cursor */}
+      <motion.span
+        animate={{ opacity: [1, 0] }}
+        transition={{
+          duration: 0.5,
+          repeat: Infinity,
+          repeatType: 'reverse',
+          ease: 'easeInOut',
+        }}
+        style={{
+          display: 'inline-block',
+          width: '3px',
+          height: '1em',
+          marginLeft: '4px',
+          verticalAlign: 'text-bottom',
+          background: isDarkMode 
+            ? 'linear-gradient(135deg, #4F8CFF 0%, #7C5CFF 100%)'
+            : 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
+        }}
+      />
+    </motion.span>
+  );
 };
 
 export const Hero3DSection = () => {
@@ -135,10 +266,8 @@ export const Hero3DSection = () => {
               </motion.div>
 
               <motion.div
-                variants={fadeInUp}
-                initial="hidden"
-                animate="visible"
-                custom={0.15}
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 1 }}
               >
                 <Typography
                   variant="h1"
@@ -151,21 +280,7 @@ export const Hero3DSection = () => {
                     color: 'text.primary',
                   }}
                 >
-                  I build{' '}
-                  <Box
-                    component="span"
-                    sx={{
-                      background: isDarkMode 
-                        ? 'linear-gradient(135deg, #4F8CFF 0%, #7C5CFF 100%)'
-                        : 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
-                      backgroundClip: 'text',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                    }}
-                  >
-                    digital experiences
-                  </Box>
-                  {' '}that matter.
+                  <TypewriterText />
                 </Typography>
               </motion.div>
 
@@ -180,16 +295,20 @@ export const Hero3DSection = () => {
                   sx={{
                     color: 'text.secondary',
                     fontWeight: 400,
-                    lineHeight: 1.6,
+                    lineHeight: 1.4,
                     mb: { xs: 3, md: 5 },
-                    maxWidth: { xs: '100%', md: 520 },
+                    maxWidth: { xs: '100%', md: 620 },
                     mx: { xs: 'auto', md: 0 },
-                    fontSize: { xs: '0.9375rem', sm: '1rem', md: '1.125rem' },
+                    fontSize: { xs: '0.8375rem', sm: '1rem', md: '1.0rem' },
                     px: { xs: 1, sm: 0 },
                   }}
                 >
-                  Full-Stack Developer crafting modern web applications with React, 
-                  Node.js, and Firebase. Turning ideas into polished, production-ready products.
+                  Full-Stack Developer crafting modern web applications with React,
+Node.js,
+Express.js, Google Cloud Platform, Firebase, and AWS. With a passion for
+clean code and a focus on user experience, I specialize in building
+scalable, secure, and efficient web applications. Let's collaborate to bring
+your ideas to life. Turning ideas into polished, production-ready products.
                 </Typography>
               </motion.div>
 
