@@ -36,134 +36,77 @@ const scaleIn = {
   },
 };
 
-// Letter animation variants
-const letterVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      delay: i * 0.03,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  }),
-};
+// Typewriter animation words
+const words = ['digital experiences', 'web applications', 'modern solutions', 'scalable systems'];
 
-// Typewriter animation component - infinite loop, no word breaks
+// Animated typewriter text with theme-safe transitions
 const TypewriterText = () => {
   const { isDarkMode } = useTheme();
-  const [key, setKey] = useState(0);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  // Restart animation every 6 seconds for infinite loop
+  const accentColor = isDarkMode ? '#4F8CFF' : '#2563EB';
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setKey(prev => prev + 1);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
+    const currentWord = words[currentWordIndex];
+    
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (displayText.length < currentWord.length) {
+          setDisplayText(currentWord.slice(0, displayText.length + 1));
+        } else {
+          // Pause before deleting
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        // Deleting
+        if (displayText.length > 0) {
+          setDisplayText(displayText.slice(0, -1));
+        } else {
+          setIsDeleting(false);
+          setCurrentWordIndex((prev) => (prev + 1) % words.length);
+        }
+      }
+    }, isDeleting ? 50 : 100);
 
-  const sentence = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const wordAnim = {
-    hidden: { opacity: 0, y: 15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      },
-    },
-  };
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, currentWordIndex]);
 
   return (
-    <motion.span
-      key={key}
-      variants={sentence}
-      initial="hidden"
-      animate="visible"
-      style={{ display: 'inline' }}
-    >
-      <motion.span variants={wordAnim} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
-        I
-      </motion.span>{' '}
-      <motion.span variants={wordAnim} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
-        build
-      </motion.span>{' '}
-      <motion.span 
-        variants={wordAnim} 
-        style={{ 
-          display: 'inline-block', 
-          whiteSpace: 'nowrap',
-          background: isDarkMode 
-            ? 'linear-gradient(135deg, #4F8CFF 0%, #7C5CFF 100%)'
-            : 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          filter: isDarkMode 
-            ? 'drop-shadow(0 0 8px rgba(79, 140, 255, 0.6)) drop-shadow(0 0 20px rgba(124, 92, 255, 0.4))'
-            : 'drop-shadow(0 0 8px rgba(37, 99, 235, 0.5)) drop-shadow(0 0 20px rgba(124, 58, 237, 0.3))',
-        }}
-      >
-        digital
-      </motion.span>{' '}
-      <motion.span 
-        variants={wordAnim} 
-        style={{ 
-          display: 'inline-block', 
-          whiteSpace: 'nowrap',
-          background: isDarkMode 
-            ? 'linear-gradient(135deg, #4F8CFF 0%, #7C5CFF 100%)'
-            : 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          filter: isDarkMode 
-            ? 'drop-shadow(0 0 8px rgba(79, 140, 255, 0.6)) drop-shadow(0 0 20px rgba(124, 92, 255, 0.4))'
-            : 'drop-shadow(0 0 8px rgba(37, 99, 235, 0.5)) drop-shadow(0 0 20px rgba(124, 58, 237, 0.3))',
-        }}
-      >
-        experiences
-      </motion.span>{' '}
-      <motion.span variants={wordAnim} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
-        that
-      </motion.span>{' '}
-      <motion.span variants={wordAnim} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
-        matter.
-      </motion.span>
-      
-      {/* Blinking cursor */}
-      <motion.span
-        animate={{ opacity: [1, 0] }}
-        transition={{
-          duration: 0.5,
-          repeat: Infinity,
-          repeatType: 'reverse',
-          ease: 'easeInOut',
-        }}
+    <span style={{ display: 'inline' }}>
+      I build{' '}
+      <span 
         style={{
-          display: 'inline-block',
-          width: '3px',
-          height: '1em',
-          marginLeft: '4px',
-          verticalAlign: 'text-bottom',
-          background: isDarkMode 
-            ? 'linear-gradient(135deg, #4F8CFF 0%, #7C5CFF 100%)'
-            : 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
+          display: 'inline',
+          color: accentColor,
+          transition: 'color 0.3s ease',
         }}
-      />
-    </motion.span>
+      >
+        {displayText}
+        {/* Blinking cursor - right after the blue text */}
+        <span
+          style={{
+            display: 'inline-block',
+            width: '3px',
+            height: '1em',
+            marginLeft: '2px',
+            verticalAlign: 'text-bottom',
+            backgroundColor: accentColor,
+            transition: 'background-color 0.3s ease',
+            animation: 'blink 1s step-end infinite',
+          }}
+        />
+      </span>{' '}
+      that matter.
+      <style>{`
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+      `}</style>
+    </span>
   );
 };
 

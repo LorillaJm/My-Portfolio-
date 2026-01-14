@@ -33,8 +33,8 @@ const languageColors: { [key: string]: string } = {
 
 const featuredProjects: FeaturedProject[] = [
   { id: 'inventory-system', title: 'Inventory Management System', description: 'Full-stack inventory system with real-time stock tracking, low-stock alerts, and sales reporting dashboard.', techStack: ['PHP', 'MySQL', 'Bootstrap', 'JavaScript'], highlights: ['Reduced stock errors by 80%', 'Saved 5+ hours/week', 'Production deployed'], githubUrl: 'https://github.com/LorillaJm' },
-  { id: 'portfolio-website', title: 'Portfolio Website', description: 'Modern, responsive portfolio with React, TypeScript, and Material-UI featuring smooth animations and dark mode.', techStack: ['React', 'TypeScript', 'Material-UI', 'Firebase'], highlights: ['Mobile-responsive', 'Optimized performance', 'Firebase hosted'], liveUrl: 'https://john-michael-portfolio.web.app', githubUrl: 'https://github.com/LorillaJm' },
-  { id: 'order-tracking', title: 'Order Tracking System', description: 'Order management system with status tracking, customer notifications, and admin dashboard.', techStack: ['Node.js', 'Express', 'MongoDB', 'React'], highlights: ['Real-time updates', 'Admin dashboard', 'Customer notifications'], githubUrl: 'https://github.com/LorillaJm' },
+  { id: 'portfolio-website', title: 'Portfolio Website', description: 'Modern, responsive portfolio with React, TypeScript, and Material-UI featuring smooth animations and dark mode.', techStack: ['React', 'TypeScript', 'Material-UI', 'Firebase'], highlights: ['Mobile-responsive', 'Optimized performance', 'Firebase hosted'], liveUrl: 'https://my-portfolio-lilac-nine-87.vercel.app/', githubUrl: 'https://github.com/LorillaJm/My-Portfolio-.git' },
+  { id: 'Attendance System', title: 'Attendance System', description: 'Attendance management system with status tracking, user notifications, and admin dashboard.', techStack: ['Node.js', 'Express', 'MongoDB + Firebase', 'React'], highlights: ['Real-time updates', 'Admin dashboard', 'User notifications'], liveUrl: 'https://es6-sooty.vercel.app/', githubUrl: 'https://github.com/LorillaJm/es6.git' },
 ];
 
 const Projects = () => {
