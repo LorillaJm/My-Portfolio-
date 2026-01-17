@@ -1,3 +1,5 @@
+![Alt](https://repobeats.axiom.co/api/embed/18a869f14f7a8c4bac0019a443211d39c668f440.svg "Repobeats analytics image")
+
 # John Michael Lorilla - Portfolio
 
 A modern, responsive portfolio website showcasing my work as a Full-Stack Developer. Built with React, TypeScript, and Material-UI featuring smooth animations and 3D effects.
